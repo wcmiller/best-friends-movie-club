@@ -1,0 +1,167 @@
+.header{
+  color: gold;
+  text-shadow: 0 0 0.5rem gold;
+  font-family: 'Bungee Outline', cursive;
+  font-weight: 400;
+  text-align: center;
+  padding: 1.5rem;
+
+  &__marquee{
+    border-radius: 0.5rem;
+    background: rgba(0,0,0,0.7);
+    padding: 1rem;
+    display: inline-block;
+    width: 100rem;
+
+    @media (max-width: 1024px){
+      width: 100%;
+    }
+  }
+}
+
+.header__title{
+  font-weight: bold;
+  text-align: center;
+  padding: 1.5rem 4.5rem 1rem;
+  line-height:6rem;
+  font-size: 6rem;
+
+  @media (max-width: 1024px){
+    padding-bottom: 0.5rem;
+  }
+}
+
+.card{
+  width: calc(100% - 8rem);
+  border-radius: 0.5rem;
+  max-width: 100rem;
+  margin: 1rem auto;
+  background: rgba(255,255,255,0.8);
+  min-height: 40rem;
+  padding: 2rem 4rem;
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.searchForm{
+  width: 35%;
+
+  h2{
+    margin-bottom: 1rem;
+  }
+}
+
+.searchField{
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 17.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  margin-left: 0.5rem;
+}
+
+.searchButton {
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 2rem;
+  margin-left: 0.5rem;
+  color: #FFF;
+  background-color: #550000;
+}
+
+.searchResults{
+  width: 62.5%;
+}
+
+.searchResults__list{
+  display: flex;
+  list-style:none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.searchResults__title{
+  line-height: 1.25rem;
+}
+.searchResults__item{
+  width: 18.5%;
+  padding: 0.5rem;
+  background: #FFF;
+  margin-bottom: 0.75rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem rgba(0,0,0,0.1);
+}
+.searchResults__poster{
+  width: 100%;
+  height: auto;
+}
+
+.picks{
+  margin-top: 1rem;
+}
+
+.picksList{
+  list-style: none;
+}
+
+.picksList__item{
+  display: flex;
+  background: #FFF;
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0 1rem;
+  border-radius: 0.5rem;
+  flex-wrap: wrap;
+  position: relative;
+
+  &_headline{
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  &_info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+  }
+  &_title{
+    font-weight: bold;
+  }
+  &_service{
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    line-height: 2rem;
+
+    select{
+      padding: 0 0.5rem;
+      margin-left: 0.5rem;
+      height: 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  }
+  &_clear{
+    font-size: 2rem;
+    text-align: center;
+    width: 2rem;
+    height: 2rem;
+    background: #550000;
+    color: #FFF;
+    border-radius: 1rem;
+    border: 0.125rem solid #CCC;
+    line-height: 1.5rem;
+    position: absolute;
+    right: -1rem;
+    top: -1rem;
+    box-shadow: 0.125rem 0.125rem 0.5rem rgba(0,0,0,0.1);
+    cursor:pointer;
+  }
+}
+
+.picksList__poster{
+  width: 4rem;
+  height: auto;
+}
