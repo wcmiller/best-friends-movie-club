@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Ubuntu:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.833333333333vw;
+  color: #333;
+
+  @media (max-width: 1024px){
+    font-size: 3.2vw; 
+  }
+}
+body {
+  background-image: url('/img/curtain.png');
+  background-position: center center;
+  background-size: cover;
+}

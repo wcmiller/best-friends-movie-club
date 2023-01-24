@@ -1,0 +1,261 @@
+.card {
+  border-radius: 1rem;
+  padding: 2rem;
+  background: rgb(255,255,255,0.8);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.title{
+  width: 100%;
+  padding-bottom: 1rem;
+  order: 1;
+}
+
+.info{
+  width: 57.5%;
+  order: 2;
+  @media (max-width: 1024px){
+    width: 100%;
+  }
+}
+
+.directors{
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: .5rem;
+}
+.genres{
+  font-size: 0.875rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.description{
+  line-height: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.poster{
+  width: 37.5%;
+  order: 3;
+
+  @media (max-width: 1024px){
+    width: 47.5%;
+    order: 4;
+  }
+}
+
+.stats{
+  margin-top: 1rem;
+}
+
+.statsBox{
+  line-height: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  border-bottom: 0.0625rem solid #333;
+}
+
+.statsLabel{
+  font-weight: bold;
+}
+
+.statsData{
+  font-style: italic;
+}
+
+.posterImg{
+  width: 100%;
+  box-shadow: 0.25rem 0.25rem 0.75rem rgba(0,0,0,0.4);
+  height: auto;
+}
+
+.cast{
+  width: 100%;
+  order: 4;
+
+  @media (max-width: 1024px){
+    width: 47.5%;
+    order: 3;
+
+    h2{
+      display: none;
+    }
+  }
+
+  h2{
+    margin: 0 0 0.5rem;
+  }
+}
+
+.actor{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding-left: 4rem;
+  line-height: 1.5rem;
+  margin-bottom: 1rem;
+  width: 50%;
+
+  @media (max-width: 1024px){
+    width: 100%;
+    padding-left: 0;
+    flex-direction: column;
+    padding-top: 3.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.actor__list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @media (max-width: 1024px){
+    flex-direction: column;
+  }
+
+}
+
+.actor__name{
+  font-weight: bold;
+  font-size: 1.125rem;
+
+  @media (max-width: 1024px){
+    width: 100%;
+    text-align: center;
+  }
+}
+.actor__role{
+  font-style:italic;
+  font-size: 0.875rem;
+  line-height: 1rem;
+
+  @media (max-width: 1024px){
+    width: 100%;
+    text-align: center;
+  }
+}
+.actor__image{
+  width: 3rem;
+  height: auto;
+  clip-path: circle(1.5rem at 1.5rem 2rem);
+  box-shadow: 0.125rem 0.125rem .5rem rgba(0,0,0,0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  @media (max-width: 1024px){
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.trailer{
+  width: 100%;
+  aspect-ratio: 16/9;
+  padding: 1rem;
+  border: 0.125rem solid #222;
+  background: #FFF;
+}
+.trailerBox{
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  order: 5;
+
+  h2{
+    margin: 1rem 0 0.5rem;
+
+    @media (max-width: 1024px){
+      display: none;
+    }
+  }
+}
+
+
+.votes{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  justify-content: space-between;
+  order: 6;
+  h2{
+    width: 100%;
+    margin: 1rem 0 0.5rem;
+
+    @media (max-width: 1024px){
+      text-align: center;
+      margin: 0 0 0.5rem;
+    }
+  }
+}
+.voteList{
+  width: 50%;
+  list-style: none;
+
+
+  @media (max-width: 1024px){
+    width: auto;
+  }
+}
+.voteButton{
+  font-size: 2rem;
+  padding: 1rem 3rem;
+  background: transparent;
+  color: #FFF;
+  text-shadow: 0 0 0.0625rem rgba(0,0,0,0.6);
+  border: none;
+  background-image: 
+    radial-gradient(circle at top left, transparent 1rem, #dc143c 1rem), 
+    radial-gradient(circle at top right, transparent 1rem, #dc143c 1rem), 
+    radial-gradient(circle at bottom left, transparent 1rem, #dc143c 1rem), 
+    radial-gradient(circle at bottom right, transparent 1rem, #dc143c 1rem);
+  box-shadow: 0 2.5rem 1rem -2.5rem rgba(0,0,0,0.5);
+  background-size: 51% 51%;
+  background-position: top left, top right, bottom left, bottom right;
+  position: relative;
+  width: 15rem;
+  height: 7.5rem;
+  background-repeat: no-repeat;
+  cursor: pointer;
+
+  &:disabled{
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+  @media (max-width: 1024px){
+    width: 12rem;
+    height: 6rem;
+    font-size: 1.5rem;
+  }
+
+  &:after{
+    height: 4.5rem;
+    width: 12rem;
+    left: 1.5rem;
+    top: 1.5rem;
+    border: 0.25rem solid #fa8072;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    display: block;
+    content: '';
+    position: absolute;
+  
+  
+    @media (max-width: 1024px){
+      width: 10rem;
+      height: 4rem;
+      left: 1rem;
+      top: 1rem;
+    }
+  }
+}
