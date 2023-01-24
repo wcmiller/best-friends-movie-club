@@ -1,63 +1,94 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import { MovieCard } from 'components';
-import styles from '@/styles/Home.module.scss'
+import styles from '@/styles/Home.module.scss';
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
   export async function getServerSideProps(){
+    const week = await prisma.week.findFirst({
+      where: {
+        id: 1
+      },
+      include: {
+        picker: true,
+        movies: {
+          include: {
+            movie: true,
+            vote: {
+              include: {
+                user: true
+              }
+            },
+          }
+        }
+      }
+    });
+    const data = JSON.parse(JSON.stringify(week));
+    const { movies, picker } = data;
     return {
-      props: {}
+      props: {
+        data,
+        week: {
+          number: data.number,
+          date: 'Dec 31',
+          picker: picker.name,
+          pickerId: picker.id
+        },
+        movies
+      }
     }
   }
   
-  export default function CurrentWeek({ }) {
+  export default function CurrentWeek({ week, movies, data }) {
+    console.log(movies);
+    // const week = {
+    //   number: 462,
+    //   picker: {
+    //     name: 'Nick Johnston',
+    //     id: 2
+    //   },
+    //   date: '2022-01-29'
+    // };
   
-    const week = {
-      number: 462,
-      picker: {
-        name: 'Nick Johnston',
-        id: 2
-      },
-      date: '2022-01-29'
-    };
-  
-    const movies = [
-      {
-        id: 'tt4154756',
-        title: 'Avengers: Infinity War',
-        year: 2018,
-        genres: ['Action', 'Adventure', 'Sci-Fi'],
-        imdbRating: 8.4,
-        mpaaRating: 'PG-13',
-        service: 'HBO Max',
-        trailer: 'https://www.youtube.com/watch?v=XZ8daibM3AE',
-        trailer: 'XZ8daibM3AE',
-        runtime: 149,
-        poster: 'https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_.jpg',
-        plotSummary: 'As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment, the fate of Earth and existence has never been more uncertain.',
-        directors: ['Anthony Russo', 'Joe Russo'],
-        cast: [
-          {
-            actor: 'Robert Downey Jr',
-            characters: ['Tony Stark', 'Iron Man'],
-            image: 'https://m.media-amazon.com/images/M/MV5BNzg1MTUyNDYxOF5BMl5BanBnXkFtZTgwNTQ4MTE2MjE@._V1_.jpg'
-          },
-          {
-            actor: 'Chris Hemsworth',
-            characters: ['Thor'],
-            image: 'https://m.media-amazon.com/images/M/MV5BOTU2MTI0NTIyNV5BMl5BanBnXkFtZTcwMTA4Nzc3OA@@._V1_.jpg'
-          },
-          {
-            actor: 'Mark Ruffalo',
-            characters: ['Bruce Banner', 'Hulk'],
-            image: 'https://m.media-amazon.com/images/M/MV5BNWIzZTI1ODUtZTUzMC00NTdiLWFlOTYtZTg4MGZkYmU4YzNlXkEyXkFqcGdeQXVyNTExOTk5Nzg@._V1_.jpg'
-          },
-          {
-            actor: 'Chris Evans',
-            characters: ['Steve Rogers', 'Captain America'],
-            image: 'https://m.media-amazon.com/images/M/MV5BMTU2NTg1OTQzMF5BMl5BanBnXkFtZTcwNjIyMjkyMg@@._V1_.jpg'
-          },
-        ],
-      }
-    ];
+    // const movies = [
+    //   {
+    //     id: 'tt4154756',
+    //     title: 'Avengers: Infinity War',
+    //     year: 2018,
+    //     genres: ['Action', 'Adventure', 'Sci-Fi'],
+    //     imdbRating: 8.4,
+    //     mpaaRating: 'PG-13',
+    //     service: 'HBO Max',
+    //     trailer: 'https://www.youtube.com/watch?v=XZ8daibM3AE',
+    //     trailer: 'XZ8daibM3AE',
+    //     runtime: 149,
+    //     poster: 'https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_.jpg',
+    //     plotSummary: 'As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment, the fate of Earth and existence has never been more uncertain.',
+    //     directors: ['Anthony Russo', 'Joe Russo'],
+    //     cast: [
+    //       {
+    //         actor: 'Robert Downey Jr',
+    //         characters: ['Tony Stark', 'Iron Man'],
+    //         image: 'https://m.media-amazon.com/images/M/MV5BNzg1MTUyNDYxOF5BMl5BanBnXkFtZTgwNTQ4MTE2MjE@._V1_.jpg'
+    //       },
+    //       {
+    //         actor: 'Chris Hemsworth',
+    //         characters: ['Thor'],
+    //         image: 'https://m.media-amazon.com/images/M/MV5BOTU2MTI0NTIyNV5BMl5BanBnXkFtZTcwMTA4Nzc3OA@@._V1_.jpg'
+    //       },
+    //       {
+    //         actor: 'Mark Ruffalo',
+    //         characters: ['Bruce Banner', 'Hulk'],
+    //         image: 'https://m.media-amazon.com/images/M/MV5BNWIzZTI1ODUtZTUzMC00NTdiLWFlOTYtZTg4MGZkYmU4YzNlXkEyXkFqcGdeQXVyNTExOTk5Nzg@._V1_.jpg'
+    //       },
+    //       {
+    //         actor: 'Chris Evans',
+    //         characters: ['Steve Rogers', 'Captain America'],
+    //         image: 'https://m.media-amazon.com/images/M/MV5BMTU2NTg1OTQzMF5BMl5BanBnXkFtZTcwNjIyMjkyMg@@._V1_.jpg'
+    //       },
+    //     ],
+    //   }
+    // ];
     return (
       <>
         <Head>
@@ -76,22 +107,12 @@ import styles from '@/styles/Home.module.scss'
             </h1>
             <div className={styles.header__info}>
               <div className={styles.header__week}><span className={styles.hideMobile}>Now Playing: </span>Week {week.number}</div>
-              <div className={styles.header__picker}>{week.picker.name}<span className={styles.hideMobile}> :: Producer</span></div>
-              <div className={styles.header__time}><span className={styles.hideMobile}>Showtime: </span>Jan 29 - 7:15 CST / 5:15 PST</div>
+              <div className={styles.header__picker}>{week.picker}</div>
+              <div className={styles.header__time}>{week.date} - 7:15 CST / 5:15 PST</div>
             </div>
           </div>
         </header>
         <main className={styles.movies}>
-          {
-            movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))
-          }
-          {
-            movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))
-          }
           {
             movies.map((movie) => (
               <MovieCard key={movie.id} movie={movie} />

@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String @db.TinyText
+  email String @db.Char(36)
+  salt  String @db.Char(32)
+  hash  String @db.Char(128)
+  order Int    @db.UnsignedTinyInt
+  week  Week[]
+  vote  Vote[]
+}
+
+model Vote {
+  id     Int  @id @default(autoincrement())
+  userId Int  @db.UnsignedSmallInt
+  pickId Int  @db.UnsignedSmallInt
+  user   User @relation(fields: [userId], references: [id])
+  pick   Pick @relation(fields: [pickId], references: [id])
+
+  @@index(userId)
+  @@index(pickId)
+}
+
+model Week {
+  id       Int      @id @default(autoincrement())
+  number   Int      @db.UnsignedSmallInt
+  date     DateTime @db.Date
+  status   Status   @default(PENDING)
+  pickerId Int      @db.UnsignedTinyInt
+  picker   User     @relation(fields: [pickerId], references: [id])
+  movies   Pick[]
+}
+
+model Pick {
+  id      Int     @id @default(autoincrement())
+  movieId Int     @db.UnsignedSmallInt
+  weekId  Int     @db.UnsignedSmallInt
+  service Service
+  week    Week    @relation(fields: [weekId], references: [id])
+  movie   Movie   @relation(fields: [movieId], references: [id])
+  vote    Vote[]
+}
+
+model Movie {
+  id         Int    @id @default(autoincrement())
+  imdb       String @db.Char(16)
+  title      String @db.TinyText
+  runtime    Int    @db.UnsignedTinyInt
+  year       Int    @db.Year
+  directors  Json   @db.Json
+  cast       Json   @db.Json
+  genres     Json   @db.Json
+  summary    String @db.MediumText
+  poster     String @db.TinyText
+  trailer    String @db.Char(40)
+  imdbRating Float  @db.Double
+  mpaaRating String @db.Char(6)
+  weeks      Pick[]
+}
+
+enum Status {
+  PENDING
+  CHOOSING
+  VOTING
+  CLOSED
+  COMPLETE
+}
+
+enum Service {
+  AMAZON
+  HBO
+  NETFLIX
+}

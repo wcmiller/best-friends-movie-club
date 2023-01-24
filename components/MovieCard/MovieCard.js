@@ -1,7 +1,21 @@
 import styles from './MovieCard.module.scss';
 import Image from 'next/image';
 
-export default function MovieCard({ movie }) {
+function getService(service){
+  switch(service){
+    case 'HBO':
+      return 'HBO Max';
+    case 'AMAZON':
+      return 'Amazon Prime';
+    default:
+      return 'Netflix';
+  }
+}
+
+export default function MovieCard({ movie: { movie, service, vote } }) {
+  console.clear();
+  console.log(vote);
+  const watchOn = getService(service);
   return (
     <article className={styles.card}>
       <section className={styles.title}>
@@ -10,7 +24,7 @@ export default function MovieCard({ movie }) {
       <section className={styles.info}>
         <p className={styles.directors}>Director{movie.directors.length > 1? 's' : ''}: {movie.directors.join(', ')}</p>
         <p className={styles.genres}>{movie.genres.join(', ')}</p>
-        <p className={styles.description}>{movie.plotSummary}</p>
+        <p className={styles.description}>{movie.summary}</p>
       </section>
       <section className={styles.poster}>
         <Image src={movie.poster} width={210} height={310} alt={movie.title} className={styles.posterImg} />
@@ -29,7 +43,7 @@ export default function MovieCard({ movie }) {
           </div>
           <div className={styles.statsBox}>
             <span className={styles.statsLabel}>Service: </span> 
-            <span className={styles.statsData}>{movie.service}</span>
+            <span className={styles.statsData}>{watchOn}</span>
           </div>
         </div>
       </section>
@@ -61,11 +75,9 @@ export default function MovieCard({ movie }) {
       <section className={styles.votes}>
         <h2>Votes</h2>
           <ul className={styles.voteList}>
-            <li>Nick Kiley</li>
-            <li>Etan Kiley</li>
-            <li>Warren Miller</li>
-            <li>Jeff Rinky</li>
-            <li>Tim Jenkins</li>
+            {vote.map(vt => (
+              <li key={vt.id}>{vt.user.name}</li>
+            ))}
           </ul>
           <button className={styles.voteButton} type='button' disabled>Vote</button>
       </section>
