@@ -13,8 +13,6 @@ function getService(service){
 }
 
 export default function MovieCard({ movie: { movie, service, vote } }) {
-  console.clear();
-  console.log(vote);
   const watchOn = getService(service);
   return (
     <article className={styles.card}>

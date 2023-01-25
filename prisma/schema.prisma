@@ -12,14 +12,15 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  name  String @db.TinyText
-  email String @db.Char(36)
-  salt  String @db.Char(32)
-  hash  String @db.Char(128)
-  order Int    @db.UnsignedTinyInt
-  week  Week[]
-  vote  Vote[]
+  id       Int        @id @default(autoincrement())
+  name     String     @db.TinyText
+  email    String     @db.Char(36)
+  salt     String     @db.Char(32)
+  hash     String     @db.Char(128)
+  order    Int        @db.UnsignedTinyInt
+  week     Week[]
+  vote     Vote[]
+  Absentee Absentee[]
 }
 
 model Vote {
@@ -34,13 +35,14 @@ model Vote {
 }
 
 model Week {
-  id       Int      @id @default(autoincrement())
-  number   Int      @db.UnsignedSmallInt
-  date     DateTime @db.Date
-  status   Status   @default(PENDING)
-  pickerId Int      @db.UnsignedTinyInt
-  picker   User     @relation(fields: [pickerId], references: [id])
+  id       Int        @id @default(autoincrement())
+  number   Int        @db.UnsignedSmallInt
+  date     DateTime   @db.Date
+  status   Status     @default(PENDING)
+  pickerId Int        @db.UnsignedTinyInt
+  picker   User       @relation(fields: [pickerId], references: [id])
   movies   Pick[]
+  Absentee Absentee[]
 }
 
 model Pick {
@@ -51,6 +53,14 @@ model Pick {
   week    Week    @relation(fields: [weekId], references: [id])
   movie   Movie   @relation(fields: [movieId], references: [id])
   vote    Vote[]
+}
+
+model Absentee {
+  id     Int  @id @default(autoincrement())
+  userId Int  @db.UnsignedTinyInt
+  weekId Int  @db.UnsignedSmallInt
+  week   Week @relation(fields: [weekId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
 }
 
 model Movie {
