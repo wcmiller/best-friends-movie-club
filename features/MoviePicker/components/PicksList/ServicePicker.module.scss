@@ -1,0 +1,23 @@
+@import '@/styles/utils';
+
+.servicePicker{
+  font-size: rem(14px); 
+  line-height: rem(32px);
+  margin-top: rem(8px);
+}
+
+.label{
+  display: inline-block;
+  width: rem(64px);
+  font-weight: bold;
+}
+
+.select{
+  padding: rem(0 8px);
+  height: rem(32px);
+  font-size: rem(14px);
+  font-weight: bold;
+  border: rem(1px) solid #333;
+  border-radius: rem(4px);
+  width: 100%;
+}

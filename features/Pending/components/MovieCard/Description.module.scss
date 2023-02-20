@@ -1,0 +1,31 @@
+@import '@/styles/utils';
+
+.title{
+  width: 100%;
+  padding-bottom: rem(16px);
+  order: 1;
+}
+
+.info{
+  width: 57.5%;
+  order: 2;
+  @media (max-width: 1024px){
+    width: 100%;
+  }
+}
+
+.directors{
+  font-weight: bold;
+  font-size: rem(16px);
+  margin-bottom: rem(8px);
+}
+.genres{
+  font-size: rem(14px);  
+  font-style: italic;
+  margin-bottom: rem(8px);
+}
+.description{
+  line-height: rem(24px);
+  margin-bottom: rem(16px);
+}
+

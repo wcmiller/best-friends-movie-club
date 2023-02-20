@@ -1,0 +1,1 @@
+export { default as WeekSettings } from './WeekSettings/WeekSettings';

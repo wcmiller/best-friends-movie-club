@@ -1,0 +1,59 @@
+@import '@/styles/utils';
+
+.picks{
+  margin-top: 1rem;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.picksList{
+  list-style: none;
+}
+
+.picksList__item{
+  display: flex;
+  background: #FFF;
+  width: 100%;
+  padding: rem(16px);
+  margin: rem(8px 0 16px);
+  border-radius: rem(8px);
+  flex-wrap: wrap;
+  position: relative;
+
+  &_headline{
+    width: 100%;
+    margin-bottom: rem(4px);
+  }
+
+  &_info{
+    display: flex;
+    flex-direction: column;
+    margin-left: rem(16px);
+    width: calc( 100% - 7rem);
+  }
+  &_title{
+    font-weight: bold;
+  }
+  &_clear{
+    font-size: rem(32px);
+    text-align: center;
+    width:  rem(32px);
+    height:  rem(32px);
+    background: #550000;
+    color: #FFF;
+    border-radius:  rem(16px);
+    border:  rem(2px) solid #CCC;
+    line-height:  rem(24px);
+    position: absolute;
+    right:  rem(-16px);
+    top: rem(-16px);
+    box-shadow: rem(2px 2px 4px) rgba(0,0,0,0.1);
+    cursor:pointer;
+  }
+}
+
+.picksList__poster{
+  width: rem(96px);
+  aspect-ratio: auto;
+  height: auto;
+}

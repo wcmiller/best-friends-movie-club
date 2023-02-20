@@ -1,0 +1,81 @@
+@import '@/styles/utils';
+
+.cast{
+  width: 100%;
+  order: 4;
+
+  h2{ margin: rem(0 0 8px); }
+
+  @media (max-width: 1024px){
+    width: 47.5%;
+    order: 3;
+
+    h2{ display: none; }
+  }
+}
+
+.actor{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding-left: rem(64px);
+  line-height: rem(24px);
+  margin-bottom: 0;
+  width: 50%;
+  align-items: center;
+  min-height: rem(64px);
+
+  @media (max-width: 1024px){
+    width: 100%;
+    padding-left: 0;
+    flex-direction: column;
+    padding-top: rem(56px);
+    margin-bottom: rem(8px);
+  }
+}
+
+.actor__list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @media (max-width: 1024px){
+    flex-direction: column;
+  }
+
+}
+
+.actor__name{
+  font-weight: bold;
+  font-size: rem(18px);
+
+  @media (max-width: 1024px){
+    width: 100%;
+    text-align: center;
+  }
+}
+.actor__role{
+  font-style:italic;
+  font-size: rem(14px);
+  line-height: rem(16px);
+
+  @media (max-width: 1024px){
+    width: 100%;
+    text-align: center;
+  }
+}
+.actor__image{
+  width: rem(48px);
+  height: auto;
+  clip-path: circle(1.5rem at 1.5rem 2rem);
+  box-shadow: rem(2px 2px 8px) rgba(0,0,0,0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  @media (max-width: 1024px){
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

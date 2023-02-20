@@ -1,0 +1,29 @@
+@import '@/styles/utils';
+
+.poster{
+  width: 37.5%;
+  order: 3;
+
+  @media (max-width: 1024px){
+    width: 47.5%;
+    order: 4;
+  }
+}
+.posterImg{
+  width: 100%;
+  box-shadow: rem(4px 4px 12px) rgba(0,0,0,0.4);
+  height: auto;
+}
+
+.stats{ margin-top: rem(16px); }
+.statsBox{
+  line-height: rem(24px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: rem(8px);
+  border-bottom: rem(1px) solid #333;
+}
+.statsLabel{ font-weight: bold; }
+.statsData{ font-style: italic; }
+

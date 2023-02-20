@@ -1,0 +1,31 @@
+@import '@/styles/utils';
+
+.trailer{
+  width: 100%;
+  aspect-ratio: 16/9;
+  padding: rem(16px);
+  border: rem(2px) solid #222;
+  background: #FFF;
+
+
+  @media (max-width: 1024px){
+    padding: 0;
+    border: none;
+    box-shadow: rem(4px 4px 12px) rgba(0,0,0,0.4); 
+  }
+}
+.trailerBox{
+  margin-top: rem(16px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  order: 5;
+
+  h2{
+    margin: rem(16px 0 8px);
+
+    @media (max-width: 1024px){
+      display: none;
+    }
+  }
+}

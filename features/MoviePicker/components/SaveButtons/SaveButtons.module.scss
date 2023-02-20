@@ -1,0 +1,15 @@
+@import '@/styles/utils';
+
+.wrapper{
+  width: 100%;
+  display: grid;
+  column-gap: rem(8px);
+}
+
+.wrap2{
+  grid-template-columns: 1fr 1fr;
+}
+
+.wrap3{
+  grid-template-columns: 1fr 1fr 1fr;
+}

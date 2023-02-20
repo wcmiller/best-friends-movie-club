@@ -1,0 +1,46 @@
+@import '@/styles/utils';
+
+.settings{
+  width: 100%;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 3;
+
+  h3{
+    margin-bottom: 0.5rem;
+  }
+}
+
+.date{
+  
+  input{
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+.attendees{
+  h4{
+    margin-bottom: 0.5rem;
+  }
+  ul{
+    list-style: none;
+  }
+}
+
+.absentees{
+  h4{
+    margin-bottom: 0.5rem;
+  }
+  ul{
+    list-style: none;
+  }
+}
+
+.comments{
+  textarea{
+    width: 100%;
+    height: 4rem;
+  }
+}

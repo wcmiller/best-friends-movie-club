@@ -1,0 +1,21 @@
+@import '@/styles/utils';
+
+.searchForm{
+  margin-top: rem(8px);
+  display: grid; 
+  width: 100%;
+  grid-template-columns: 1fr auto;
+  column-gap: rem(8px);
+}
+
+.searchField{
+  width: 100%;
+  font-size: rem(16px);
+  padding: rem(8px);
+  margin-right: rem(8px);
+  height: rem(40px);
+
+  &:focus{
+    outline: none;
+  }
+}

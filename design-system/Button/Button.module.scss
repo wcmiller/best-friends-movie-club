@@ -1,0 +1,46 @@
+@import '@/styles/utils';
+
+.btn {
+  font-size: rem(16px);
+  border-width: rem(2px);
+  border-style: solid;
+  border-radius: rem(3px);
+  padding: rem(6px 16px);
+  height: rem(40px);
+  cursor:pointer;
+  text-align: center;
+  display: block;
+  width: 100%;
+
+  &:disabled{
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .loader {
+    width: rem(16px);
+    height: rem(16px);
+    border: rem(4px) solid $white;
+    border-left-color: transparent;
+    border-radius: 50% 50%;
+    animation: rotating 0.75s linear infinite;
+    display: inline-block;
+  }
+
+  &.primary{
+    color: #FFF;
+    background-color: $primary;
+    border-color: $primary; 
+  }
+  &.outline{
+    border-color: $primary;
+    color: $primary;
+    background-color: $white;
+  }
+
+  &.secondary{
+    color: $primary;
+    border-color: $secondary;
+    $background-color: $secondary;
+  }
+}

@@ -1,0 +1,24 @@
+@import '@/styles/utils';
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.title{
+  width: 100%;
+  padding-bottom: rem(16px);
+  order: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.winnerStar{
+  color: gold;
+  -webkit-text-stroke: rem(2px) black;
+  
+
+
+}

@@ -9,16 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.264.0",
+    "@aws-sdk/credential-provider-node": "^3.264.0",
+    "@hapi/iron": "^7.0.0",
     "@next/font": "13.1.5",
     "@prisma/client": "^4.9.0",
     "axios": "^1.2.3",
+    "cookie": "^0.5.0",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
     "moment": "^2.29.4",
     "next": "13.1.5",
+    "next-connect": "^0.13.0",
+    "nodemailer": "^6.9.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "^1.57.1"
+    "sass": "^1.57.1",
+    "swr": "^2.0.1"
   },
   "devDependencies": {
     "prisma": "^4.9.0"

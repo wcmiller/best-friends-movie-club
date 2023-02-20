@@ -1,0 +1,15 @@
+@mixin card {
+  border-radius: 1rem;
+  padding: 2rem;
+  background: rgb(255,255,255,0.8);
+  max-width: 100%;
+}
+
+@function rem($values){
+  $list: ();
+  @each $value in $values{
+      @if($value / 1px == 0 or $value == 0){ $list: append($list, 0) }
+      @else{ $list: append($list, ($value / 1px) / 16 + rem) }
+  }
+  @return $list;
+}

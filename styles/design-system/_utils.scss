@@ -1,0 +1,22 @@
+.hideMobile{
+  @media (max-width: 1024px){
+      display: none;
+  }    
+}
+
+.hideDesktop{
+  @media (min-width: 1025px){
+    display: none;
+  }    
+}
+
+.spinner{
+  width: 3rem;
+  height: 3rem;
+  border: 0.25rem solid #FFF;
+  border-left-color: transparent;
+  border-radius: 50% 50%;
+  -webkit-animation: rotating 0.75s linear infinite;
+}
+
+@keyframes rotating { to{ transform: rotate(360deg); } }

@@ -1,45 +1,19 @@
 import Head from 'next/head';
-import { MovieCard } from 'components';
-import styles from '@/styles/Home.module.scss';
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { MovieList } from '@/features/Pending/components';
+import { PendingProvider } from '@/features/Pending/context/Provider';
+import getWeek from '@/features/Pending/actions/getWeek';
 
-  export async function getServerSideProps(){
-    const week = await prisma.week.findFirst({
-      where: {
-        id: 1
-      },
-      include: {
-        picker: true,
-        movies: {
-          include: {
-            movie: true,
-            vote: {
-              include: {
-                user: true
-              }
-            },
-          }
-        }
-      }
-    });
-    const data = JSON.parse(JSON.stringify(week));
-    const { movies, picker } = data;
+  export async function getServerSideProps(ctx ){
     return {
       props: {
-        data,
-        week: {
-          number: data.number,
-          date: 'Dec 31',
-          picker: picker.name,
-          pickerId: picker.id
-        },
-        movies
+        ...(await getWeek(ctx)),
+        page: ''
       }
     }
   }
   
-  export default function CurrentWeek({ week, movies }) {
+  export default function CurrentWeek({ week }) {
+    console.log(week);
     return (
       <>
         <Head>
@@ -48,28 +22,9 @@ const prisma = new PrismaClient()
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <header className={styles.header}>
-          <div className={styles.header__marquee}>
-            <h1 className={styles.header__title}>
-              B<span className={styles.hideMobile}>est </span>
-              F<span className={styles.hideMobile}>riends </span> 
-              M<span className={styles.hideMobile}>ovie </span> 
-              C<span className={styles.hideMobile}>lub</span> 
-            </h1>
-            <div className={styles.header__info}>
-              <div className={styles.header__week}><span className={styles.hideMobile}>Now Playing: </span>Week {week.number}</div>
-              <div className={styles.header__picker}>{week.picker}</div>
-              <div className={styles.header__time}>{week.date} - 7:15 CST / 5:15 PST</div>
-            </div>
-          </div>
-        </header>
-        <main className={styles.movies}>
-          {
-            movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))
-          }
-        </main>
+        <PendingProvider initialValue={week}>
+          <MovieList />
+        </PendingProvider>
       </>
     )
 }

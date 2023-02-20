@@ -27,6 +27,7 @@ model Vote {
   id     Int  @id @default(autoincrement())
   userId Int  @db.UnsignedSmallInt
   pickId Int  @db.UnsignedSmallInt
+  weekId Int  @default(0) @db.UnsignedSmallInt
   user   User @relation(fields: [userId], references: [id])
   pick   Pick @relation(fields: [pickId], references: [id])
 
@@ -35,23 +36,27 @@ model Vote {
 }
 
 model Week {
-  id       Int        @id @default(autoincrement())
-  number   Int        @db.UnsignedSmallInt
-  date     DateTime   @db.Date
-  status   Status     @default(PENDING)
-  pickerId Int        @db.UnsignedTinyInt
-  picker   User       @relation(fields: [pickerId], references: [id])
-  movies   Pick[]
-  Absentee Absentee[]
+  id        Int        @id @default(autoincrement())
+  number    Int        @db.UnsignedSmallInt
+  date      DateTime   @db.Date
+  note      String     @default("") @db.TinyText
+  status    Status     @default(PENDING)
+  pickerId  Int        @db.UnsignedTinyInt
+  picker    User       @relation(fields: [pickerId], references: [id])
+  movies    Pick[]
+  winnerId  Int        @default(0) @db.UnsignedSmallInt
+  messageId String     @default("") @db.TinyText
+  absentees Absentee[]
 }
 
 model Pick {
   id      Int     @id @default(autoincrement())
-  movieId Int     @db.UnsignedSmallInt
+  movieId String  @db.Char(16)
   weekId  Int     @db.UnsignedSmallInt
   service Service
+  link    String  @default("") @db.TinyText
   week    Week    @relation(fields: [weekId], references: [id])
-  movie   Movie   @relation(fields: [movieId], references: [id])
+  movie   Movie   @relation(fields: [movieId], references: [imdb])
   vote    Vote[]
 }
 
@@ -65,7 +70,7 @@ model Absentee {
 
 model Movie {
   id         Int    @id @default(autoincrement())
-  imdb       String @db.Char(16)
+  imdb       String @unique @db.Char(16)
   title      String @db.TinyText
   runtime    Int    @db.UnsignedTinyInt
   year       Int    @db.Year
@@ -84,7 +89,6 @@ enum Status {
   PENDING
   CHOOSING
   VOTING
-  CLOSED
   COMPLETE
 }
 

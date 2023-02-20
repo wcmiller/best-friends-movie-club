@@ -1,0 +1,25 @@
+.footer{
+  width: 100%;
+  color: gold;
+  text-shadow: 0 0 0.5rem gold;
+  font-family: 'Bungee Outline', cursive;
+  border-radius: 1rem;
+  background: rgba(0,0,0,0.7);
+  padding: 1rem 4rem;
+  display: block;
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+
+  a{
+    margin: 0 2rem;
+    color: gold;
+    text-decoration: none;
+
+    @media (max-width: 1024px){
+      width: 50%;
+      display: inline-block;
+      margin: 0.75rem 0;
+    }
+  }
+}

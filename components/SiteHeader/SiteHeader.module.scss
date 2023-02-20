@@ -1,0 +1,86 @@
+.header{
+  color: gold;
+  text-shadow: 0 0 0.5rem gold;
+  font-family: 'Bungee Outline', cursive;
+  font-weight: 400;
+  text-align: center;
+  border-radius: 1rem;
+  background: rgba(0,0,0,0.7);
+  padding: 1rem;
+  display: inline-block;
+  width: 100%;
+  font-weight: bold;
+
+  a{
+    color: gold;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &__title{
+    font-weight: bold;
+    text-align: center;
+    padding: 1.5rem 4.5rem 1rem;
+    line-height:6rem;
+    font-size: 6rem;
+  
+    @media (max-width: 1024px){
+      padding-bottom: 0.5rem;
+    }  
+  }
+}
+
+.currentWeek{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-shadow: none; 
+
+  @media (max-width: 1024px){
+    flex-direction: column;
+    text-shadow: none;
+  }
+
+  &__week{
+    width: 33%;
+    text-align: left;
+    font-size: 1.5rem;
+    
+    @media (max-width: 1024px){
+      text-align: center;
+      width: 100%;
+      font-size: 2rem;
+      order: 2;
+      margin-bottom: 0.5rem;
+    }
+  
+  }
+
+  &__picker{
+    width: 34%;
+    font-size: 2rem;
+    
+    @media (max-width: 1024px){
+      text-align: center;
+      width: 100%;
+      font-size: 2.5rem;
+      order: 1;
+    }  
+  }
+  &__time{
+    width: 33%;
+    text-align: right;
+    font-size: 1.5rem;
+  
+    @media (max-width: 1024px){
+      text-align: center;
+      width: 100%;
+      font-size: 1.75rem;
+      order: 3;
+    }  
+  }
+}
+.week{
+  font-size: 2rem;
+}

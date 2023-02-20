@@ -1,5 +1,2 @@
-import MovieCard from "./MovieCard/MovieCard";
-
-export {
-  MovieCard
-};
+export { default as SiteHeader } from "./SiteHeader/SiteHeader";
+export { default as SiteFooter } from './SiteFooter/SiteFooter';
